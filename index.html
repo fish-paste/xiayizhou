@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苹果树下你和我</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Section 1: CD Player -->
+    <section class="hero-section" id="hero">
+        <div class="hero-content">
+            <div class="cd-player" id="cd-player">
+                <div class="turntable-base">
+                    <div class="cd-disc" id="cd-disc">
+                        <div class="cd-groove"></div>
+                        <div class="cd-groove cd-groove-2"></div>
+                        <div class="cd-groove cd-groove-3"></div>
+                        <div class="cd-label">
+                            <span class="cd-label-text">飞鸟回环</span>
+                        </div>
+                        <div class="cd-hole"></div>
+                    </div>
+                    <div class="cd-arm" id="cd-arm"></div>
+                </div>
+                <div class="cd-status" id="cd-status">CLICK TO PLAY</div>
+            </div>
+            <p class="typewriter" id="typewriter"></p>
+        </div>
+        <div class="scroll-hint">&#8595;</div>
+        <audio id="audio-player" loop>
+            <source src="music/juebieshu.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Section 2: 3D Constellation Globe -->
+    <section class="magazine-section" id="magazine">
+        <canvas id="globe-canvas"></canvas>
+        <div class="globe-info" id="globe-info">
+            <p class="globe-hint">拖拽旋转星球 · 点击星座查看详情</p>
+        </div>
+    </section>
+
+    <!-- Section 3: 3D Book Cards -->
+    <section class="books3d-section" id="books3d">
+        <div class="books3d-scene" id="books3d-scene">
+            <div class="book3d-card active" data-index="0">
+                <div class="book3d-img">
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=800&q=80" alt="">
+                </div>
+                <div class="book3d-text">
+                    <h3>罪与罚</h3>
+                    <p class="book3d-author">陀思妥耶夫斯基</p>
+                    <p class="book3d-excerpt">我当时只想弄明白一件事：我是一只虱子，像所有的人一样，还是一个人？我能不能跨过去？我是一个战栗的生物，还是有权利的人……痛苦和疼痛对于智力广博和内心深沉的人来说总是不可避免的。我想那些真正伟大的人一定会在这个世界上感到巨大的悲伤。</p>
+                </div>
+            </div>
+            <div class="book3d-card" data-index="1">
+                <div class="book3d-img">
+                    <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=800&q=80" alt="">
+                </div>
+                <div class="book3d-text">
+                    <h3>无路之地</h3>
+                    <p class="book3d-author"></p>
+                    <p class="book3d-excerpt">窗外仍在下着雨。新生的雏鸟在檐下的巢穴中，能看到它们在料峭的风中竖起的细小羽毛。<br>也许等这个雨季后，那些屋檐下的雏鸟们就会长出坚韧的新羽，飞出巢穴。<br>人类对爱也会有雏鸟情节吗？他不知道。也许他是那只被困住的鸟。可窗外在下雨，雨又总是下个不停，那就等天晴后，他们再飞往不同的方向吧。</p>
+                </div>
+            </div>
+            <div class="book3d-card" data-index="2">
+                <div class="book3d-img">
+                    <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80" alt="">
+                </div>
+                <div class="book3d-text">
+                    <h3>卡拉马佐夫兄弟</h3>
+                    <p class="book3d-author">陀思妥耶夫斯基</p>
+                    <p class="book3d-excerpt">如果上帝不存在，那么一切都是被允许的。魔鬼和上帝在斗争，而斗争的战场就是人心。人类的秘密并不在于仅仅活着，而在于为什么活着。如果对自己为什么活着没有一个坚定的信念，人就不愿意活着，宁可毁灭自己，也不愿留在世上，尽管他的四周摆满了面包。</p>
+                </div>
+            </div>
+            <div class="book3d-card" data-index="3">
+                <div class="book3d-img">
+                    <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80" alt="">
+                </div>
+                <div class="book3d-text">
+                    <h3>局外人</h3>
+                    <p class="book3d-author">加缪</p>
+                    <p class="book3d-excerpt">我觉得我打开了幸福的闸门。在那一刻，这片寂静的海湾和其中升起的香气向我涌来，仿佛第一次浸入了我的灵魂。这片大地的奇妙安宁，仿佛是从世界尽头传来的。我那时第一次想到，原来世界上存在着一种善良的冷漠，它与我竟如此相近，简直就像兄弟。</p>
+                </div>
+            </div>
+            <div class="book3d-card" data-index="4">
+                <div class="book3d-img">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80" alt="">
+                </div>
+                <div class="book3d-text">
+                    <h3>审判</h3>
+                    <p class="book3d-author">卡夫卡</p>
+                    <p class="book3d-excerpt">一定是有人诬陷了约瑟夫·K，因为一天早晨，他没有做什么坏事，就被逮捕了。……逻辑固然是不可动摇的，但它抵不住一个想要活命的人。假如有这么一个审判官，而我从没见过他：假如有一个更高级的法庭，而我永远也不可能到达——那我怎么可能被赦免呢？</p>
+                </div>
+            </div>
+        </div>
+        <div class="books3d-nav">
+            <button class="books3d-btn" id="books3d-prev">&#8592;</button>
+            <span class="books3d-counter" id="books3d-counter">1 / 5</span>
+            <button class="books3d-btn" id="books3d-next">&#8594;</button>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

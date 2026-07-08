@@ -1,0 +1,485 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+}
+
+body {
+    background: #ffffff;
+    font-family: 'Noto Serif SC', serif;
+    overflow-x: hidden;
+}
+
+/* ===== Section 1: Hero ===== */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+/* CD Player - Turntable (reference: top-down view, wooden case, simple elegant) */
+.cd-player {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    margin: 0 auto 60px;
+    cursor: pointer;
+}
+
+.turntable-base {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: #f8f4ef;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.1),
+        0 4px 12px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    border: 1px solid #e0dbd5;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cd-disc {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            #333 0%, #222 6%,
+            #1a1a1a 7%, #111 10%,
+            #1c1c1c 11%, #0f0f0f 18%,
+            #1a1a1a 19%, #0d0d0d 28%,
+            #1a1a1a 29%, #111 38%,
+            #1a1a1a 39%, #0d0d0d 50%,
+            #1a1a1a 51%, #111 62%,
+            #1a1a1a 63%, #0d0d0d 75%,
+            #1a1a1a 76%, #111 88%,
+            #222 89%, #2a2a2a 100%
+        );
+    box-shadow:
+        0 2px 20px rgba(0,0,0,0.3),
+        inset 0 0 40px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.cd-disc.spinning {
+    animation: spin 16s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Vinyl grooves */
+.cd-groove {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
+}
+
+.cd-groove-2 {
+    width: 55%;
+    height: 55%;
+    border-color: rgba(255,255,255,0.05);
+}
+
+.cd-groove-3 {
+    width: 90%;
+    height: 90%;
+    border-color: rgba(255,255,255,0.03);
+}
+
+/* Vinyl light reflection */
+.cd-disc::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg,
+        transparent 35%,
+        rgba(255,255,255,0.06) 48%,
+        transparent 52%
+    );
+    pointer-events: none;
+}
+
+.cd-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0ede8, #e5e0d8);
+    border: 1px solid #d5d0c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cd-label-text {
+    color: #555;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.cd-hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f8f4ef;
+    border: 2px solid #ccc;
+    z-index: 2;
+}
+
+/* Tonearm */
+.cd-arm {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 3px;
+    height: 140px;
+    background: linear-gradient(180deg, #aaa, #888);
+    border-radius: 2px;
+    transform-origin: top center;
+    transform: rotate(-35deg);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+}
+
+.cd-arm::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.cd-arm::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 10px;
+    background: #777;
+    border-radius: 0 0 2px 2px;
+}
+
+.cd-arm.playing {
+    transform: rotate(-5deg);
+}
+
+.cd-status {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-size: 11px;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.cd-player:hover .cd-status {
+    color: #666;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 10vw;
+}
+
+.typewriter {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: #222;
+    letter-spacing: 0.15em;
+    line-height: 2;
+    min-height: 3em;
+    margin-top: 60px;
+}
+
+.typewriter .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: #222;
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(0,0,0,0.25);
+    font-size: 1.5rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== Section 2: Constellation Globe ===== */
+.magazine-section {
+    width: 100%;
+    height: 160vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+    position: relative;
+    margin-top: 10vh;
+    margin-bottom: 0;
+    padding-bottom: 25vh;
+}
+
+#globe-canvas {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.globe-info {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.globe-hint {
+    font-size: 0.8rem;
+    color: #aaa;
+    letter-spacing: 0.3em;
+}
+
+.globe-detail {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    color: #333;
+    letter-spacing: 0.1em;
+}
+
+.globe-detail .constellation-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    letter-spacing: 0.15em;
+}
+
+
+/* ===== Section 3: 3D Carousel ===== */
+.books3d-section {
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    margin-top: -120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.books3d-scene {
+    width: 100%;
+    height: 70vh;
+    position: relative;
+    perspective: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book3d-card {
+    position: absolute;
+    width: 700px;
+    max-width: 85vw;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: rotateY(60deg) translateZ(-300px) scale(0.7);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.book3d-card.active {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(0) scale(1);
+    pointer-events: all;
+    z-index: 5;
+}
+
+.book3d-card.prev {
+    opacity: 0.4;
+    transform: rotateY(35deg) translateX(-60%) translateZ(-200px) scale(0.8);
+}
+
+.book3d-card.next {
+    opacity: 0.4;
+    transform: rotateY(-35deg) translateX(60%) translateZ(-200px) scale(0.8);
+}
+
+.book3d-img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.book3d-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(80%) contrast(1.05);
+}
+
+.book3d-text {
+    padding: 10px 0;
+}
+
+.book3d-text h3 {
+    font-size: 1.8rem;
+    color: #111;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+}
+
+.book3d-author {
+    font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.book3d-excerpt {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.9;
+    overflow: hidden;
+    max-height: 260px;
+}
+
+.books3d-nav {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.books3d-btn {
+    background: none;
+    border: 1px solid #ccc;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.books3d-btn:hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.books3d-counter {
+    font-size: 0.85rem;
+    color: #999;
+    letter-spacing: 0.2em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .book3d-card {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .book3d-img {
+        height: 180px;
+    }
+
+    .book3d-card.prev,
+    .book3d-card.next {
+        opacity: 0;
+    }
+
+    .cd-player {
+        width: 300px;
+        height: 300px;
+    }
+
+    .cd-disc {
+        width: 220px;
+        height: 220px;
+    }
+}
